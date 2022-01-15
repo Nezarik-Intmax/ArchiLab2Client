@@ -61,13 +61,24 @@ namespace ArchiLab2Client {
         }
         // метод для получения ответа
         private void Answ() {
-            byte[] answer = new byte[64];
+            byte[] answer = new byte[2560];
             socket.ReceiveFrom(answer, 0, ref end);
+          //  if (Encoding.Default.GetString(answer).ToString() == "@")
             textBox1.Text = Encoding.Default.GetString(answer);
         }
         // очистка окна сообщений от сервера
         private void richTextBox1_MouseClick(object sender, MouseEventArgs e) {
-            textBox1.Text = "";
+            label1.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string str ="@" + textname.Text;
+            byte[] buffer = Encoding.Default.GetBytes(str);
+            socket.Send(buffer, buffer.Length, 0);
+            // ожидание ответа от сервера
+            new Answer(delegate () { Answ(); }).BeginInvoke(null, null);
+
         }
     }
 }

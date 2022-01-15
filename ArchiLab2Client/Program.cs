@@ -13,7 +13,7 @@ namespace ArchiLab2Client {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1("192.168.1.131", "8080"));
+            Application.Run(new Form1("192.168.1.101", "8080"));
         }
     }
 }
